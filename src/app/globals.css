@@ -100,6 +100,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ===== WeChat/Mobile Browser Fixes ===== */
+/* Force GPU acceleration to prevent flicker */
+.glass-card,
+.glass-button,
+.emoji-orb,
+[class*="motion"] {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
 /* Calm meditation background - soft sage, lavender, teal gradients */
 body::before {
   content: '';
@@ -154,6 +169,7 @@ body::after {
     rgba(255, 255, 255, 0.02) 50%,
     rgba(255, 255, 255, 0.035) 100%
   );
+  -webkit-backdrop-filter: blur(var(--card-blur));
   backdrop-filter: blur(var(--card-blur));
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: var(--card-radius);
@@ -163,6 +179,9 @@ body::after {
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
     inset 0 -1px 0 rgba(0, 0, 0, 0.1);
   position: relative;
+  /* WeChat browser fix */
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 .glass-card::before {
@@ -534,6 +553,27 @@ body::after {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ===== WeChat Browser Specific Fixes ===== */
+/* Disable backdrop-filter on low-end devices to prevent flicker */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .glass-card,
+  .glass-button {
+    background: rgba(20, 24, 22, 0.95);
+  }
+}
+
+/* Force compositing layer for animated elements */
+.blur-3xl {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Prevent text rendering issues during animation */
+[class*="motion"],
+[style*="transform"] {
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 
 /* ===== Focus styles for accessibility ===== */

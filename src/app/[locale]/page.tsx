@@ -21,7 +21,7 @@ import { useAnswers } from '@/hooks/useAnswers';
 type Stage = 'landing' | 'q1' | 'q2' | 'q3' | 'q4' | 'q5' | 'q6' | 'q7' | 'q8' | 'q9' | 'results';
 
 const pageVariants = {
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: 20, willChange: 'opacity, transform' },
   enter: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] as const } },
   exit: { opacity: 0, y: -20, transition: { duration: 0.2 } },
 };
@@ -142,6 +142,7 @@ export default function Home() {
             animate="enter"
             exit="exit"
             className="w-full max-w-[720px]"
+            style={{ transform: 'translateZ(0)' }}
           >
             {renderStage()}
           </motion.div>
