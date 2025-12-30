@@ -21,9 +21,17 @@ import { useAnswers } from '@/hooks/useAnswers';
 type Stage = 'landing' | 'q1' | 'q2' | 'q3' | 'q4' | 'q5' | 'q6' | 'q7' | 'q8' | 'q9' | 'results';
 
 const pageVariants = {
-  initial: { opacity: 0, y: 20, willChange: 'opacity, transform' },
-  enter: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] as const } },
-  exit: { opacity: 0, y: -20, transition: { duration: 0.2 } },
+  initial: { opacity: 0, y: 20 },
+  enter: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] as const }
+  },
+  exit: {
+    opacity: 0,
+    y: -10,
+    transition: { duration: 0.15 }
+  },
 };
 
 export default function Home() {
@@ -92,7 +100,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col">
+    <main className="min-h-screen flex flex-col" style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}>
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 p-4">
         <div className="max-w-[720px] mx-auto flex justify-between items-center">
@@ -134,7 +142,7 @@ export default function Home() {
 
       {/* Main Content */}
       <div className="flex-1 flex items-center justify-center p-4 pt-28">
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={stage}
             variants={pageVariants}
@@ -142,7 +150,11 @@ export default function Home() {
             animate="enter"
             exit="exit"
             className="w-full max-w-[720px]"
-            style={{ transform: 'translateZ(0)' }}
+            style={{
+              willChange: 'opacity, transform',
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+            }}
           >
             {renderStage()}
           </motion.div>
@@ -171,13 +183,15 @@ function LandingPage({ onStart }: { onStart: () => void }) {
   return (
     <div className="flex flex-col items-center justify-center text-center py-12 min-h-[80vh]">
       {/* Calm meditation orbs - soft sage, lavender, teal */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ isolation: 'isolate' }}>
         <motion.div
           className="absolute w-[40vw] h-[40vw] max-w-[400px] max-h-[400px] rounded-full blur-3xl"
           style={{
             background: 'radial-gradient(circle, rgba(143,170,150,0.15) 0%, rgba(143,170,150,0) 70%)',
             top: '5%',
-            left: '0%'
+            left: '0%',
+            willChange: 'transform',
+            backfaceVisibility: 'hidden',
           }}
           animate={{
             x: [0, 60, 20, 80, 0],
@@ -195,7 +209,9 @@ function LandingPage({ onStart }: { onStart: () => void }) {
           style={{
             background: 'radial-gradient(circle, rgba(160,152,176,0.12) 0%, rgba(160,152,176,0) 70%)',
             bottom: '0%',
-            right: '-10%'
+            right: '-10%',
+            willChange: 'transform',
+            backfaceVisibility: 'hidden',
           }}
           animate={{
             x: [0, -50, 25, -60, 0],
@@ -214,6 +230,8 @@ function LandingPage({ onStart }: { onStart: () => void }) {
             background: 'radial-gradient(circle, rgba(136,172,168,0.14) 0%, rgba(136,172,168,0) 70%)',
             top: '40%',
             left: '50%',
+            willChange: 'transform',
+            backfaceVisibility: 'hidden',
           }}
           animate={{
             x: ['-50%', '-35%', '-55%', '-42%', '-50%'],
@@ -231,7 +249,9 @@ function LandingPage({ onStart }: { onStart: () => void }) {
           style={{
             background: 'radial-gradient(circle, rgba(152,152,176,0.1) 0%, rgba(152,152,176,0) 70%)',
             bottom: '20%',
-            left: '10%'
+            left: '10%',
+            willChange: 'transform',
+            backfaceVisibility: 'hidden',
           }}
           animate={{
             x: [0, 40, -25, 35, 0],
@@ -316,6 +336,7 @@ function LandingPage({ onStart }: { onStart: () => void }) {
           transition={{ delay: 1 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          style={{ willChange: 'transform', backfaceVisibility: 'hidden' }}
         >
           {/* Gradient background */}
           <span className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 rounded-full" />
@@ -323,6 +344,7 @@ function LandingPage({ onStart }: { onStart: () => void }) {
           {/* Animated glow */}
           <motion.span
             className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 rounded-full blur-xl opacity-50"
+            style={{ willChange: 'transform, opacity', backfaceVisibility: 'hidden' }}
             animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
@@ -330,6 +352,7 @@ function LandingPage({ onStart }: { onStart: () => void }) {
           {/* Shimmer effect */}
           <motion.span
             className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent rounded-full"
+            style={{ willChange: 'transform', backfaceVisibility: 'hidden' }}
             animate={{ x: ['-100%', '200%'] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'linear', repeatDelay: 1 }}
           />
@@ -348,7 +371,7 @@ function LandingPage({ onStart }: { onStart: () => void }) {
       </motion.div>
 
       {/* Floating emojis with organic movement */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ isolation: 'isolate' }}>
         {floatingElements.map((el, i) => (
           <motion.span
             key={i}
@@ -357,6 +380,8 @@ function LandingPage({ onStart }: { onStart: () => void }) {
               left: `${el.x}%`,
               top: `${el.y}%`,
               fontSize: `${1.5 * el.scale}rem`,
+              willChange: 'transform, opacity',
+              backfaceVisibility: 'hidden',
             }}
             initial={{ opacity: 0, scale: 0 }}
             animate={{
