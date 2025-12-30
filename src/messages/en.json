@@ -1,0 +1,169 @@
+{
+  "meta": {
+    "title": "Sketch 2025",
+    "description": "Interactive Year-End Review"
+  },
+  "common": {
+    "next": "Next",
+    "back": "Back",
+    "submit": "Submit",
+    "skip": "Skip",
+    "share": "Share",
+    "restart": "Start Over",
+    "progress": "Question {current} / {total}"
+  },
+  "landing": {
+    "title": "Sketch 2025",
+    "subtitle": "Interactive Year-End Review",
+    "description": "Answer 9 questions, discover your year in review",
+    "start": "Start"
+  },
+  "q1": {
+    "title": "Did you understand yourself better this year?",
+    "subtitle": "Choose the answer that best fits your state",
+    "recording": "Recording your choice...",
+    "options": {
+      "found": "Yes",
+      "notFound": "No",
+      "notMyProblem": "Not my concern",
+      "dontKnow": "I don't know"
+    }
+  },
+  "q2": {
+    "title": "Did you travel this year?",
+    "subtitle": "Select your travel frequency",
+    "recording": "Recording your journey...",
+    "options": {
+      "none": "No",
+      "few": "1-2 times",
+      "some": "3-5 times",
+      "many": "5+ times"
+    }
+  },
+  "q3": {
+    "title": "What new habit did you start this year?",
+    "subtitle": "Type your habit and watch the matching emojis light up",
+    "placeholder": "e.g., running daily, reading, meditation...",
+    "noHabit": "No new habit",
+    "continue": "Continue →",
+    "recording": "Recording...",
+    "goodHabit": "Good habits deserve to be remembered ✨",
+    "followUpTitle": "How long have you kept this habit?",
+    "persistence": "Persistence is victory 💪",
+    "duration": {
+      "short": "Didn't last long",
+      "months": "A few months",
+      "halfYear": "Over half a year",
+      "fullYear": "The whole year"
+    }
+  },
+  "q4": {
+    "title": "Which mental limit did you break?",
+    "oldBeliefHint": "Enter a limiting belief that held you back",
+    "clickToExplode": "Click the bomb to explode the wall!",
+    "newBeliefHint": "Rebuild with your new belief",
+    "transformed": "Cognitive upgrade complete!",
+    "oldBeliefPlaceholder": "e.g., I'm not good enough, I can't do it...",
+    "newBeliefPlaceholder": "Enter your new belief...",
+    "buildWall": "Build this wall 🧱",
+    "explodeButton": "Explode!",
+    "wallLabel": "The wall limiting your mind",
+    "rebuildButton": "Confirm new belief ✨",
+    "transformComplete": "Transformation complete 🦋"
+  },
+  "q5": {
+    "title": "How has your mindset changed this year?",
+    "recording": "Recording...",
+    "options": {
+      "optimistic": "More optimistic",
+      "calm": "More calm & accepting",
+      "anxious": "More anxious/nervous",
+      "confident": "More confident"
+    }
+  },
+  "q6": {
+    "title": "Is your body moving in the direction you want?",
+    "recording": "Recording...",
+    "options": {
+      "significant": "Significant progress",
+      "some": "Some improvement",
+      "noChange": "No noticeable change",
+      "regression": "Some regression"
+    }
+  },
+  "q7": {
+    "title": "What's the best thing you did this year?",
+    "subtitle": "Write 1-3 things, be specific",
+    "placeholder": "Write your best achievements...",
+    "submit": "Confirm",
+    "recording": "Recording your achievements..."
+  },
+  "q8": {
+    "title": "My Energy Reactor",
+    "subtitle": "Tap activities to see how they affect your energy",
+    "dragHint": "Tap activities below to add to battery",
+    "complete": "Generate Energy Report",
+    "minActivities": "Need {count} more activities",
+    "allUsed": "All activities have been used",
+    "resultCharging": "You're a charging personality!",
+    "resultDraining": "You need more energy sources",
+    "resultBalanced": "Your energy is balanced",
+    "activities": {
+      "exercise": "Exercise",
+      "hobbies": "Hobbies",
+      "learning": "Learning",
+      "travel": "Travel/Nature",
+      "loved": "Loved ones",
+      "rest": "Rest & Relax",
+      "socialDrain": "Draining social",
+      "work": "Work stress",
+      "procrastinate": "Procrastinate",
+      "overthink": "Overthinking",
+      "phone": "Phone/Social",
+      "chores": "Chores"
+    }
+  },
+  "q9": {
+    "title": "What's the one thing you want to push forward in 2026?",
+    "subtitle": "Enter your goal and prepare for launch",
+    "placeholder": "Enter your 2026 goal...",
+    "launch": "Launch!",
+    "fuel": "Goal becomes rocket fuel..."
+  },
+  "results": {
+    "title": "Your 2025 Sketch",
+    "generating": "Analyzing your 2025...",
+    "sections": {
+      "selfAwareness": "Self Discovery",
+      "peak": "World Footprint",
+      "growth": "Seeds Planted",
+      "biggestChange": "Mental Breakthrough",
+      "mindset": "Inner Shift",
+      "body": "Body Dialogue",
+      "bestThing": "Highlight Moment",
+      "energy": "Energy Portrait",
+      "goal": "2026 Launch"
+    },
+    "insights": {
+      "title": "AI Insights",
+      "selfFound": "You found yourself in 2025 - that's the most precious achievement",
+      "selfSearching": "You're still exploring yourself - continue this journey in 2026",
+      "traveler": "You're a doer, measuring the world with your footsteps",
+      "habitMaster": "\"{habit}\" has become part of you - {duration} of consistency is remarkable",
+      "habitStarter": "\"{habit}\" is a great start - let it take root in 2026",
+      "mindsetShift": "Becoming more {mindset} inside - that's true growth",
+      "bodyProgress": "Your body is {body} - keep this awareness",
+      "energyHigh": "You're an energetic person who knows how to recharge from life",
+      "energyLow": "Watch your energy - do more things that charge you up",
+      "energyBalance": "Your energy is well balanced - you understand rhythm",
+      "goalCheer": "\"{goal}\" is a great goal - go all in for 2026!"
+    },
+    "summary": {
+      "title": "Your 2025 in One Sentence",
+      "template": "This year, you {change}, became {mindset}, charging toward {goal} with {energy}% energy"
+    },
+    "share": "Share My 2025",
+    "shareSuccess": "Copied to clipboard!",
+    "restart": "Release Again"
+  }
+}
