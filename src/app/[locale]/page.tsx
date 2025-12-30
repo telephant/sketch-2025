@@ -98,7 +98,7 @@ export default function Home() {
   };
 
   return (
-    <main className="h-screen flex flex-col overflow-hidden" style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}>
+    <main className="min-h-screen flex flex-col">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 p-4">
         <div className="max-w-[720px] mx-auto flex justify-between items-center">
@@ -139,7 +139,7 @@ export default function Home() {
       )}
 
       {/* Main Content */}
-      <div className="flex-1 flex items-center justify-center p-4 pt-20 overflow-hidden">
+      <div className="flex-1 flex items-center justify-center p-4 pt-28">
         <AnimatePresence mode="wait">
           <motion.div
             key={stage}
@@ -164,11 +164,6 @@ export default function Home() {
 
 function LandingPage({ onStart }: { onStart: () => void }) {
   const t = useTranslations('landing');
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   // More organic, varied floating particles
   const floatingElements = [
@@ -184,107 +179,26 @@ function LandingPage({ onStart }: { onStart: () => void }) {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center text-center h-full overflow-hidden">
-      {/* Calm meditation orbs - soft sage, lavender, teal (no blur for mobile) */}
+    <div className="flex flex-col items-center justify-center text-center py-12 min-h-[80vh]">
+      {/* Calm meditation orbs - CSS animations for mobile compatibility */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute w-[50vw] h-[50vw] max-w-[500px] max-h-[500px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(143,170,150,0.18) 0%, rgba(143,170,150,0.05) 40%, transparent 70%)',
-            top: '5%',
-            left: '0%',
-          }}
-          animate={{
-            x: [0, 60, 20, 80, 0],
-            y: [0, 30, -20, 50, 0],
-            scale: [1, 1.1, 0.95, 1.08, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-        <motion.div
-          className="absolute w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(160,152,176,0.15) 0%, rgba(160,152,176,0.04) 40%, transparent 70%)',
-            bottom: '0%',
-            right: '-10%',
-          }}
-          animate={{
-            x: [0, -50, 25, -60, 0],
-            y: [0, -40, 30, -15, 0],
-            scale: [1, 0.92, 1.15, 0.97, 1],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-        <motion.div
-          className="absolute w-[45vw] h-[45vw] max-w-[450px] max-h-[450px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(136,172,168,0.16) 0%, rgba(136,172,168,0.04) 40%, transparent 70%)',
-            top: '40%',
-            left: '50%',
-          }}
-          animate={{
-            x: ['-50%', '-35%', '-55%', '-42%', '-50%'],
-            y: ['-50%', '-55%', '-45%', '-52%', '-50%'],
-            scale: [1, 1.08, 0.9, 1.04, 1],
-          }}
-          transition={{
-            duration: 22,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-        <motion.div
-          className="absolute w-[35vw] h-[35vw] max-w-[350px] max-h-[350px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(152,152,176,0.12) 0%, rgba(152,152,176,0.03) 40%, transparent 70%)',
-            bottom: '20%',
-            left: '10%',
-          }}
-          animate={{
-            x: [0, 40, -25, 35, 0],
-            y: [0, -30, 25, -40, 0],
-            scale: [1, 1.15, 0.92, 1.1, 1],
-          }}
-          transition={{
-            duration: 28,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 3,
-          }}
-        />
+        <div className="orb orb-1" />
+        <div className="orb orb-2" />
+        <div className="orb orb-3" />
+        <div className="orb orb-4" />
       </div>
 
       {/* Content */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
-        animate={isMounted ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-        transition={{ delay: 0.1, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
         className="relative z-10"
       >
-        {/* Main emoji with organic breathing */}
-        <motion.div
-          className="text-7xl mb-8"
-          animate={{
-            scale: [1, 1.08, 1.02, 1.1, 1],
-            rotate: [0, -2, 1, -1, 0],
-            y: [0, -8, -4, -10, 0],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        >
+        {/* Main emoji with organic breathing - CSS animation */}
+        <div className="text-7xl mb-8 rocket-breathe">
           🚀
-        </motion.div>
+        </div>
 
         <motion.h1
           className="font-bold mb-5"
@@ -336,65 +250,43 @@ function LandingPage({ onStart }: { onStart: () => void }) {
           {/* Gradient background */}
           <span className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 rounded-full" />
 
-          {/* Animated glow - no blur for mobile */}
-          <motion.span
-            className="absolute rounded-full opacity-40"
+          {/* Animated glow - CSS animation */}
+          <span
+            className="absolute rounded-full btn-glow"
             style={{
               inset: '-8px',
               background: 'radial-gradient(circle, rgba(168,85,247,0.4) 0%, rgba(236,72,153,0.3) 40%, transparent 70%)',
             }}
-            animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.6, 0.4] }}
-            transition={{ duration: 2, repeat: Infinity }}
           />
 
-          {/* Shimmer effect */}
-          <motion.span
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent rounded-full"
-            style={{ willChange: 'transform', backfaceVisibility: 'hidden' }}
-            animate={{ x: ['-100%', '200%'] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'linear', repeatDelay: 1 }}
-          />
+          {/* Shimmer effect - CSS animation */}
+          <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent rounded-full btn-shimmer" />
 
           {/* Button text */}
           <span className="relative flex items-center gap-2 text-white">
             {t('start')}
-            <motion.span
-              animate={{ x: [0, 4, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
-              →
-            </motion.span>
+            <span className="arrow-bounce">→</span>
           </span>
         </motion.button>
       </motion.div>
 
-      {/* Floating emojis with organic movement */}
+      {/* Floating emojis with organic movement - CSS animation */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {floatingElements.map((el, i) => (
-          <motion.span
+          <span
             key={i}
-            className="absolute select-none"
+            className="floating-emoji select-none"
             style={{
               left: `${el.x}%`,
               top: `${el.y}%`,
               fontSize: `${1.5 * el.scale}rem`,
-            }}
-            animate={{
-              opacity: [0.2, 0.4, 0.25, 0.45, 0.2],
-              y: [0, -25, -10, -30, 0],
-              x: [0, 10, -8, 15, 0],
-              rotate: [0, 5, -3, 8, 0],
-              scale: [el.scale, el.scale * 1.1, el.scale * 0.95, el.scale * 1.05, el.scale],
-            }}
-            transition={{
-              duration: el.duration,
-              repeat: Infinity,
-              delay: el.delay,
-              ease: 'easeInOut',
-            }}
+              '--duration': `${el.duration}s`,
+              '--delay': `${el.delay}s`,
+              '--scale': el.scale,
+            } as React.CSSProperties}
           >
             {el.emoji}
-          </motion.span>
+          </span>
         ))}
       </div>
     </div>
