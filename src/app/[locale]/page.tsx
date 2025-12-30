@@ -21,15 +21,13 @@ import { useAnswers } from '@/hooks/useAnswers';
 type Stage = 'landing' | 'q1' | 'q2' | 'q3' | 'q4' | 'q5' | 'q6' | 'q7' | 'q8' | 'q9' | 'results';
 
 const pageVariants = {
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0 },
   enter: {
     opacity: 1,
-    y: 0,
-    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] as const }
+    transition: { duration: 0.2 }
   },
   exit: {
     opacity: 0,
-    y: -10,
     transition: { duration: 0.15 }
   },
 };
@@ -100,7 +98,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col" style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}>
+    <main className="h-screen flex flex-col overflow-hidden" style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}>
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 p-4">
         <div className="max-w-[720px] mx-auto flex justify-between items-center">
@@ -141,8 +139,8 @@ export default function Home() {
       )}
 
       {/* Main Content */}
-      <div className="flex-1 flex items-center justify-center p-4 pt-28">
-        <AnimatePresence mode="wait" initial={false}>
+      <div className="flex-1 flex items-center justify-center p-4 pt-20 overflow-hidden">
+        <AnimatePresence mode="wait">
           <motion.div
             key={stage}
             variants={pageVariants}
@@ -166,6 +164,11 @@ export default function Home() {
 
 function LandingPage({ onStart }: { onStart: () => void }) {
   const t = useTranslations('landing');
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // More organic, varied floating particles
   const floatingElements = [
@@ -181,17 +184,15 @@ function LandingPage({ onStart }: { onStart: () => void }) {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center text-center py-12 min-h-[80vh]">
-      {/* Calm meditation orbs - soft sage, lavender, teal */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ isolation: 'isolate' }}>
+    <div className="flex flex-col items-center justify-center text-center h-full overflow-hidden">
+      {/* Calm meditation orbs - soft sage, lavender, teal (no blur for mobile) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute w-[40vw] h-[40vw] max-w-[400px] max-h-[400px] rounded-full blur-3xl"
+          className="absolute w-[50vw] h-[50vw] max-w-[500px] max-h-[500px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(143,170,150,0.15) 0%, rgba(143,170,150,0) 70%)',
+            background: 'radial-gradient(circle, rgba(143,170,150,0.18) 0%, rgba(143,170,150,0.05) 40%, transparent 70%)',
             top: '5%',
             left: '0%',
-            willChange: 'transform',
-            backfaceVisibility: 'hidden',
           }}
           animate={{
             x: [0, 60, 20, 80, 0],
@@ -205,13 +206,11 @@ function LandingPage({ onStart }: { onStart: () => void }) {
           }}
         />
         <motion.div
-          className="absolute w-[50vw] h-[50vw] max-w-[500px] max-h-[500px] rounded-full blur-3xl"
+          className="absolute w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(160,152,176,0.12) 0%, rgba(160,152,176,0) 70%)',
+            background: 'radial-gradient(circle, rgba(160,152,176,0.15) 0%, rgba(160,152,176,0.04) 40%, transparent 70%)',
             bottom: '0%',
             right: '-10%',
-            willChange: 'transform',
-            backfaceVisibility: 'hidden',
           }}
           animate={{
             x: [0, -50, 25, -60, 0],
@@ -225,13 +224,11 @@ function LandingPage({ onStart }: { onStart: () => void }) {
           }}
         />
         <motion.div
-          className="absolute w-[35vw] h-[35vw] max-w-[350px] max-h-[350px] rounded-full blur-3xl"
+          className="absolute w-[45vw] h-[45vw] max-w-[450px] max-h-[450px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(136,172,168,0.14) 0%, rgba(136,172,168,0) 70%)',
+            background: 'radial-gradient(circle, rgba(136,172,168,0.16) 0%, rgba(136,172,168,0.04) 40%, transparent 70%)',
             top: '40%',
             left: '50%',
-            willChange: 'transform',
-            backfaceVisibility: 'hidden',
           }}
           animate={{
             x: ['-50%', '-35%', '-55%', '-42%', '-50%'],
@@ -245,13 +242,11 @@ function LandingPage({ onStart }: { onStart: () => void }) {
           }}
         />
         <motion.div
-          className="absolute w-[25vw] h-[25vw] max-w-[250px] max-h-[250px] rounded-full blur-3xl"
+          className="absolute w-[35vw] h-[35vw] max-w-[350px] max-h-[350px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(152,152,176,0.1) 0%, rgba(152,152,176,0) 70%)',
+            background: 'radial-gradient(circle, rgba(152,152,176,0.12) 0%, rgba(152,152,176,0.03) 40%, transparent 70%)',
             bottom: '20%',
             left: '10%',
-            willChange: 'transform',
-            backfaceVisibility: 'hidden',
           }}
           animate={{
             x: [0, 40, -25, 35, 0],
@@ -270,8 +265,8 @@ function LandingPage({ onStart }: { onStart: () => void }) {
       {/* Content */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+        animate={isMounted ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        transition={{ delay: 0.1, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         className="relative z-10"
       >
         {/* Main emoji with organic breathing */}
@@ -341,11 +336,14 @@ function LandingPage({ onStart }: { onStart: () => void }) {
           {/* Gradient background */}
           <span className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 rounded-full" />
 
-          {/* Animated glow */}
+          {/* Animated glow - no blur for mobile */}
           <motion.span
-            className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 rounded-full blur-xl opacity-50"
-            style={{ willChange: 'transform, opacity', backfaceVisibility: 'hidden' }}
-            animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+            className="absolute rounded-full opacity-40"
+            style={{
+              inset: '-8px',
+              background: 'radial-gradient(circle, rgba(168,85,247,0.4) 0%, rgba(236,72,153,0.3) 40%, transparent 70%)',
+            }}
+            animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.6, 0.4] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
 
@@ -371,7 +369,7 @@ function LandingPage({ onStart }: { onStart: () => void }) {
       </motion.div>
 
       {/* Floating emojis with organic movement */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ isolation: 'isolate' }}>
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {floatingElements.map((el, i) => (
           <motion.span
             key={i}
@@ -380,12 +378,9 @@ function LandingPage({ onStart }: { onStart: () => void }) {
               left: `${el.x}%`,
               top: `${el.y}%`,
               fontSize: `${1.5 * el.scale}rem`,
-              willChange: 'transform, opacity',
-              backfaceVisibility: 'hidden',
             }}
-            initial={{ opacity: 0, scale: 0 }}
             animate={{
-              opacity: [0.15, 0.35, 0.2, 0.4, 0.15],
+              opacity: [0.2, 0.4, 0.25, 0.45, 0.2],
               y: [0, -25, -10, -30, 0],
               x: [0, 10, -8, 15, 0],
               rotate: [0, 5, -3, 8, 0],
